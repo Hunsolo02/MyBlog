@@ -1,4 +1,5 @@
-﻿using BlogWeb.Models;
+﻿using BlogWeb.Data.Repository;
+using BlogWeb.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -6,6 +7,7 @@ namespace BlogWeb.Controllers
 {
     public class HomeController : Controller
     {
+       
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
@@ -15,13 +17,17 @@ namespace BlogWeb.Controllers
 
         public IActionResult Index()
         {
-
+        
             return View();
         }
 
         public IActionResult Privacy()
         {
             return View();
+        }
+        public IActionResult Home()
+        {
+            return RedirectToAction("Index");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

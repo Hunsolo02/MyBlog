@@ -24,12 +24,22 @@
                                 Admin
                             </a>
                             <ul class="dropdown-menu">
+                            <li>
+                                <a class=" dropdown-item" asp-area=""
+                                   asp-controller="AdminPost"
+                                   asp-action="AddPost">Add BlogPost</a>
+                            </li>
+                            <li>
+                                <a class= "dropdown-item" asp-area=""
+                                   asp-controller="AllPostMenu"
+                                   asp-action="AllPostMenu">AllPostMenu</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" asp-area=""
+                                   asp-controller="Home"
+                                   asp-action="Home">Home</a>
+                            </li>
 
-                                <li>
-                                    <a class=" dropdown-item" asp-area=""
-                                       asp-controller="AdminPost"
-                                       asp-action="AddPost">Add BlogPost</a>
-                                </li>
                     </ul>
                 </div>
             </div>

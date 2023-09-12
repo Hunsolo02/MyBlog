@@ -1,0 +1,24 @@
+﻿@model IEnumerable<BlogWeb.Models.Domain.BlogPost>
+@{
+
+}
+<h2>All Post Menu</h2>
+<div>
+    <ul>
+        @foreach (var post in Model)
+        {
+          <li>
+              <a asp-controller="AllPostMenu" asp-action="BlogPost" asp-route-id="@post.Id">
+                  @post.Heading
+              </a>
+                <a asp-controller="AdminPost" asp-action="AddPost" asp-route-id="@post.Id">
+                    Edit    
+                </a>
+                <a asp-controller="AllPostMenu" asp-action="Remove" asp-route-id="@post.Id">
+                    Remove
+                </a>
+          </li>   
+        }
+    </ul>
+</div>
+

@@ -13,10 +13,20 @@ namespace BlogWeb.Controllers
             _repo = repo;
         }
 
+      
+
         [HttpGet]
-        public IActionResult AddPost()
+        public IActionResult AddPost(int? Id)
         {
-            return View(new BlogPost());
+            if (Id == null)
+            {
+                return View(new BlogPost());
+            }
+            else
+            {
+                var post = _repo.GetPost((int) Id);  
+                return View(post);
+            }
         }
 
 
@@ -24,6 +34,9 @@ namespace BlogWeb.Controllers
         [ActionName("AddPost")]
         public async Task<IActionResult> Edit(BlogPost post) 
         {
+            if (post.Id > 0)
+                _repo.UpdatePost(post);
+            else
             _repo.AddPost(post);
 
             if(await _repo.SaveChangeAsync())
@@ -31,6 +44,14 @@ namespace BlogWeb.Controllers
                 return RedirectToAction("AddPost");
             else
                 return View(post);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Remove(int Id) 
+        {
+            _repo.RemovePost(Id);
+            await _repo.SaveChangeAsync();
+            return RedirectToAction("AddPost");
         }
     }
 }
